@@ -15,7 +15,7 @@ const Login = () => {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
-        <div>
+        <div className="input-field">
           <input
             type="email"
             placeholder="Coloque seu e-mail...."
@@ -24,7 +24,7 @@ const Login = () => {
           <FaUser className="icon" />
         </div>
 
-        <div>
+        <div className="input-field">
           <input
             type="password"
             placeholder="Coloque sua senha...."
