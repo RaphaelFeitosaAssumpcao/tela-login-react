@@ -2,23 +2,24 @@ import { FaUser, FaLock } from "react-icons/fa";
 import "./login.css";
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    alert("Enviando os dados: " + userName + " - " + password);
+    onLogin(userName, password); // Envia as credenciais para a função handleLogin no componente App
   };
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <div className="input-field">
           <input
-            type="email"
-            placeholder="Coloque seu e-mail...."
+            type="text"
+            placeholder="Coloque seu nome de usuário...."
             onChange={(e) => setUserName(e.target.value)}
           />
           <FaUser className="icon" />
@@ -34,8 +35,13 @@ const Login = () => {
         </div>
 
         <div className="recall-forget">
-          <label htmlFor="remenber">
-            <input type="checkbox" /> Lembrar-me
+          <label htmlFor="rememberMe">
+            <input
+              type="checkbox"
+              onChange={() => setRememberMe(!rememberMe)}
+              checked={rememberMe}
+            />
+            Lembrar-me
           </label>
           <a href="#">Esqueci minha senha</a>
         </div>
