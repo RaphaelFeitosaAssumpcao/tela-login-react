@@ -30,6 +30,8 @@ const colaboradores = [
 
 const ColaboradoresGrid = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [ordenarPor, setOrdenarPor] = useState("id"); // Define qual coluna ordenar
+  const [ordenacaoAsc, setOrdenacaoAsc] = useState(true);
 
   const filteredColaboradores = colaboradores.filter(
     (colaborador) =>
@@ -37,6 +39,18 @@ const ColaboradoresGrid = () => {
       colaborador.cargo.toLowerCase().includes(searchTerm.toLowerCase()) ||
       colaborador.email.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+
+  const ordenaGrid = (column) => {
+    const novaOrdenacaoAsc = ordenarPor === column ? !ordenacaoAsc : true;
+    setOrdenarPor(column);
+    setOrdenacaoAsc(novaOrdenacaoAsc);
+
+    colaboradores.sort((a, b) => {
+      if (a[column] < b[column]) return novaOrdenacaoAsc ? -1 : 1;
+      if (a[column] > b[column]) return novaOrdenacaoAsc ? 1 : -1;
+      return 0;
+    });
+  };
 
   return (
     <div className="grid-container">
@@ -46,7 +60,7 @@ const ColaboradoresGrid = () => {
           type="text"
           placeholder="Pesquisar por nome, cargo ou email"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o estado com o valor da pesquisa
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="search-bar"
         />
       </div>
@@ -54,10 +68,18 @@ const ColaboradoresGrid = () => {
       <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Cargo</th>
-            <th>Email</th>
+            <th onClick={() => ordenaGrid("ID")}>
+              ID {ordenarPor === "ID" && (ordenacaoAsc ? "↑" : "↓")}
+            </th>
+            <th onClick={() => ordenaGrid("nome")}>
+              Nome {ordenarPor === "nome" && (ordenacaoAsc ? "↑" : "↓")}
+            </th>
+            <th onClick={() => ordenaGrid("cargo")}>
+              Cargo {ordenarPor === "cargo" && (ordenacaoAsc ? "↑" : "↓")}
+            </th>
+            <th onClick={() => ordenaGrid("email")}>
+              Email {ordenarPor === "email" && (ordenacaoAsc ? "↑" : "↓")}
+            </th>
           </tr>
         </thead>
         <tbody>
