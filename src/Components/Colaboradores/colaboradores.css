@@ -28,22 +28,47 @@
   font-size: 16px;
 }
 
-/* Estilo para a tabela */
 .table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
 }
 
-/* Estilo para as células da tabela */
 .table th,
 .table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
+.table td:last-child {
+  padding-right: 20px;
+}
 
-/* Estilo para o cabeçalho da tabela */
 .table th {
   background-color: #f2f2f2;
+}
+
+button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+button.edit {
+  background-color: #4caf50;
+  color: white;
+}
+button.view-details {
+  background-color: #2196f3;
+  color: white;
+}
+button.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
 }
