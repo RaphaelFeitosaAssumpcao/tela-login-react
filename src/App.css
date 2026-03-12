@@ -6,12 +6,15 @@
   text-align: Helvetica;
 }
 
-.App {
+.app-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   min-height: 100vh;
+}
+
+.app-container.login {
   background-image: url("assets/bg.webp");
   background-size: cover;
   background-position: center;
