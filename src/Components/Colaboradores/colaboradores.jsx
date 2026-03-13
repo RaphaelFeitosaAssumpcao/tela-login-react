@@ -128,8 +128,11 @@ const handViewDetails = (id) => {
   alert(`Visualizar detalhes do colaborador com ID: ${id}`);
 };
 
-const ColaboradoresGrid = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
+  const [internalSearch, setInternalSearch] = useState("");
+  const searchTerm = searchTermProp !== undefined ? searchTermProp : internalSearch;
+  const setSearchTerm = onSearchChange || setInternalSearch;
+
   const [ordenarPor, setOrdenarPor] = useState("id"); // Define qual coluna ordenar
   const [ordenacaoAsc, setOrdenacaoAsc] = useState(true);
 
@@ -156,13 +159,9 @@ const ColaboradoresGrid = () => {
     <div className="grid-container">
       <div className="title-container">
         <h1>Lista de Colaboradores</h1>
-        <input
-          type="text"
-          placeholder="Pesquisar por nome, cargo ou email"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar"
-        />
+        <p className="search-hint">
+          Use a pesquisa na barra lateral para filtrar por nome, cargo ou email.
+        </p>
       </div>
 
       <table className="table">
