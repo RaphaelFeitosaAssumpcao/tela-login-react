@@ -19,3 +19,25 @@
   background-size: cover;
   background-position: center;
 }
+
+.app-container:not(.login) {
+  display: block;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}

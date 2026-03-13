@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Login from "./Components/Login/login";
 import ColaboradoresGrid from "./Components/Colaboradores/colaboradores";
 import "./App.css";
+import SideBar from "./Components/SideBar/sidebar";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,7 +19,12 @@ const App = () => {
       {!isAuthenticated ? (
         <Login onLogin={handleLogin} />
       ) : (
-        <ColaboradoresGrid />
+        <div className="main-content">
+          <SideBar />
+          <div className="page-content">
+            <ColaboradoresGrid />
+          </div>
+        </div>
       )}
     </div>
   );
