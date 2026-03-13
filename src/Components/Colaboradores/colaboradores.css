@@ -10,9 +10,16 @@
 
 .title-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
   width: 100%;
   margin-bottom: 20px;
+}
+
+.search-hint {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
 }
 
 .h1 {
