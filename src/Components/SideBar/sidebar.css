@@ -41,3 +41,9 @@
   background-color: #555;
   color: #f0f0f0;
 }
+
+.sideBar nav ul li a.active {
+  background-color: #0066cc;
+  color: white;
+  font-weight: 600;
+}

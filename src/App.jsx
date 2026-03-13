@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Components/Login/login";
 import ColaboradoresGrid from "./Components/Colaboradores/colaboradores";
-import "./App.css";
+import Home from "./Components/home/home";
 import SideBar from "./Components/SideBar/sidebar";
+import "./App.css";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -14,6 +16,7 @@ const App = () => {
       alert("Credenciais inválidas. Tente novamente.");
     }
   };
+
   return (
     <div className={`app-container ${!isAuthenticated ? "login" : ""}`}>
       {!isAuthenticated ? (
@@ -22,7 +25,11 @@ const App = () => {
         <div className="main-content">
           <SideBar />
           <div className="page-content">
-            <ColaboradoresGrid />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/colaboradores" element={<ColaboradoresGrid />} />
+              <Route path="/home" element={<Navigate to="/" replace />} />
+            </Routes>
           </div>
         </div>
       )}
