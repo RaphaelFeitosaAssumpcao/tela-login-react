@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
         <div className="input-field">
           <input
             type="text"
-            placeholder="Coloque seu nome de usuário...."
+            placeholder="Coloque seu usuário"
             onChange={(e) => setUserName(e.target.value)}
           />
           <FaUser className="icon" />
@@ -28,7 +28,7 @@ const Login = ({ onLogin }) => {
         <div className="input-field">
           <input
             type="password"
-            placeholder="Coloque sua senha...."
+            placeholder="Coloque sua Senha.."
             onChange={(e) => setPassword(e.target.value)}
           />
           <FaLock className="icon" />

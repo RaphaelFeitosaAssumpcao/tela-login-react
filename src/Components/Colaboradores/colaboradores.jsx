@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./colaboradores.css";
+import { FaSearch } from "react-icons/fa";
 
 const colaboradores = [
   {
@@ -130,7 +131,9 @@ const handViewDetails = (id) => {
 
 const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
   const [internalSearch, setInternalSearch] = useState("");
-  const searchTerm = searchTermProp !== undefined ? searchTermProp : internalSearch;
+  const searchTerm =
+    searchTermProp !== undefined ? searchTermProp : internalSearch;
+
   const setSearchTerm = onSearchChange || setInternalSearch;
 
   const [ordenarPor, setOrdenarPor] = useState("id"); // Define qual coluna ordenar
@@ -159,11 +162,19 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
     <div className="grid-container">
       <div className="title-container">
         <h1>Lista de Colaboradores</h1>
-        <p className="search-hint">
-          Use a pesquisa na barra lateral para filtrar por nome, cargo ou email.
-        </p>
       </div>
 
+      <div className="search">
+        <FaSearch className="search-input-icon" />
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Pesquisar..."
+          aria-label="Pesquisar"
+          value={searchTerm}
+          onChange={(e) => onSearchChange?.(e.target.value)}
+        />
+      </div>
       <table className="table">
         <thead>
           <tr>

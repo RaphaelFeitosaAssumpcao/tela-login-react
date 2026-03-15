@@ -25,14 +25,22 @@ const App = () => {
         <Login onLogin={handleLogin} />
       ) : (
         <div className="main-content">
-          <SideBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+          <SideBar />
           <div className="page-content">
             <header className="page-header">
               <div className="header-icons">
-                <button type="button" className="header-icon-btn" aria-label="Notificações">
+                <button
+                  type="button"
+                  className="header-icon-btn"
+                  aria-label="Notificações"
+                >
                   <FaBell />
                 </button>
-                <button type="button" className="header-icon-btn" aria-label="Perfil">
+                <button
+                  type="button"
+                  className="header-icon-btn"
+                  aria-label="Perfil"
+                >
                   <FaUser />
                 </button>
               </div>
@@ -40,7 +48,15 @@ const App = () => {
             <main className="page-main">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/colaboradores" element={<ColaboradoresGrid searchTerm={searchTerm} onSearchChange={setSearchTerm} />} />
+                <Route
+                  path="/colaboradores"
+                  element={
+                    <ColaboradoresGrid
+                      searchTerm={searchTerm}
+                      onSearchChange={setSearchTerm}
+                    />
+                  }
+                />
                 <Route path="/home" element={<Navigate to="/" replace />} />
               </Routes>
             </main>

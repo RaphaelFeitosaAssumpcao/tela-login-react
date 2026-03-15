@@ -10,30 +10,37 @@
 
 .title-container {
   display: flex;
-  flex-direction: column;
   gap: 8px;
   width: 100%;
   margin-bottom: 20px;
 }
 
-.search-hint {
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 10px;
   font-size: 14px;
-  color: #666;
-  margin: 0;
+  color: #555;
+}
+
+.search-input {
+  padding-left: 30px;
+  height: 32px;
+  width: 300px; /* aumenta o tamanho da barra */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
 
 .h1 {
   font-size: 24px;
   font-weight: bold;
   margin: 0;
-}
-
-.search-bar {
-  width: 300px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
 }
 
 .table {
