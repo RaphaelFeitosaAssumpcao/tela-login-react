@@ -1,6 +1,6 @@
 import { FaUser, FaLock } from "react-icons/fa";
-import "./login.css";
 import { useState } from "react";
+import "../css/login.css";
 
 const Login = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
@@ -9,7 +9,7 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(userName, password); // Envia as credenciais para a função handleLogin no componente App
+    onLogin(userName, password);
   };
 
   return (

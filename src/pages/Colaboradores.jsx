@@ -1,128 +1,10 @@
-import React, { useState } from "react";
-import "./colaboradores.css";
+import React, { useState, useMemo } from "react";
 import { FaSearch } from "react-icons/fa";
-
-const colaboradores = [
-  {
-    id: 1,
-    nome: "João Silva",
-    cargo: "Desenvolvedor Front-end",
-    email: "joao.silva@example.com",
-    sala: "Desenvolvimento",
-    gestor: "Ronaldo",
-    diretor: "Josué",
-  },
-  {
-    id: 2,
-    nome: "Maria Santos",
-    cargo: "Designer Gráfico",
-    email: "maria.santos@example.com",
-    sala: "Design",
-    gestor: "Felipe",
-    diretor: "Ana",
-  },
-  {
-    id: 3,
-    nome: "Carlos Souza",
-    cargo: "Analista de Sistemas",
-    email: "carlos.souza@example.com",
-    sala: "TI",
-    gestor: "Ronaldo",
-    diretor: "Josué",
-  },
-  {
-    id: 4,
-    nome: "Ana Costa",
-    cargo: "Gerente de Projetos",
-    email: "ana.costa@example.com",
-    sala: "Gestão",
-    gestor: "Carla",
-    diretor: "Pedro",
-  },
-  {
-    id: 5,
-    nome: "Pedro Almeida",
-    cargo: "Desenvolvedor Backend",
-    email: "pedro.almeida@example.com",
-    sala: "Desenvolvimento",
-    gestor: "Ronaldo",
-    diretor: "Josué",
-  },
-  {
-    id: 6,
-    nome: "Juliana Oliveira",
-    cargo: "Analista de Dados",
-    email: "juliana.oliveira@example.com",
-    sala: "Análise",
-    gestor: "Ronaldo",
-    diretor: "Josué",
-  },
-  {
-    id: 7,
-    nome: "Fernando Lima",
-    cargo: "Designer UX/UI",
-    email: "fernando.lima@example.com",
-    sala: "Design",
-    gestor: "Felipe",
-    diretor: "Ana",
-  },
-  {
-    id: 8,
-    nome: "Roberta Ferreira",
-    cargo: "Gerente de TI",
-    email: "roberta.ferreira@example.com",
-    sala: "TI",
-    gestor: "Ronaldo",
-    diretor: "Josué",
-  },
-  {
-    id: 9,
-    nome: "Lucas Mendes",
-    cargo: "Analista de Suporte",
-    email: "lucas.mendes@example.com",
-    sala: "Suporte",
-    gestor: "Carla",
-    diretor: "Pedro",
-  },
-  {
-    id: 10,
-    nome: "Paula Costa",
-    cargo: "Coordenadora de Marketing",
-    email: "paula.costa@example.com",
-    sala: "Marketing",
-    gestor: "Felipe",
-    diretor: "Ana",
-  },
-  {
-    id: 11,
-    nome: "Marcos Pereira",
-    cargo: "Gestor de Operações",
-    email: "marcos.pereira@example.com",
-    sala: "Operações",
-    gestor: "Felipe",
-    diretor: "Pedro",
-  },
-  {
-    id: 12,
-    nome: "Carla Oliveira",
-    cargo: "Gestora de RH",
-    email: "carla.oliveira@example.com",
-    sala: "RH",
-    gestor: "Felipe",
-    diretor: "Ana",
-  },
-];
+import "../css/colaboradores.css";
+import { colaboradoresMock } from "../data/colaboradores";
 
 const handleEdit = (id) => {
   alert(`Editar colaborador com ID: ${id}`);
-};
-
-const handleDelete = (id) => {
-  const newColaboradores = colaboradores.filter(
-    (colaborador) => colaborador.id !== id,
-  );
-  setCollaboradores(newColaboradores);
-  alert(`Excluir colaborador com ID: ${id}`);
 };
 
 const handViewDetails = (id) => {
@@ -130,32 +12,41 @@ const handViewDetails = (id) => {
 };
 
 const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
+  const [colaboradores, setColaboradores] = useState(colaboradoresMock);
   const [internalSearch, setInternalSearch] = useState("");
   const searchTerm =
     searchTermProp !== undefined ? searchTermProp : internalSearch;
-
   const setSearchTerm = onSearchChange || setInternalSearch;
 
-  const [ordenarPor, setOrdenarPor] = useState("id"); // Define qual coluna ordenar
+  const [ordenarPor, setOrdenarPor] = useState("id");
   const [ordenacaoAsc, setOrdenacaoAsc] = useState(true);
 
-  const filteredColaboradores = colaboradores.filter(
-    (colaborador) =>
-      colaborador.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      colaborador.cargo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      colaborador.email.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  const handleDelete = (id) => {
+    setColaboradores((prev) => prev.filter((colaborador) => colaborador.id !== id));
+    alert(`Excluir colaborador com ID: ${id}`);
+  };
+
+  const filteredColaboradores = useMemo(() => {
+    const filtered = colaboradores.filter(
+      (colaborador) =>
+        colaborador.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.cargo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    const sorted = [...filtered].sort((a, b) => {
+      const aVal = a[ordenarPor];
+      const bVal = b[ordenarPor];
+      if (aVal < bVal) return ordenacaoAsc ? -1 : 1;
+      if (aVal > bVal) return ordenacaoAsc ? 1 : -1;
+      return 0;
+    });
+    return sorted;
+  }, [colaboradores, searchTerm, ordenarPor, ordenacaoAsc]);
 
   const ordenaGrid = (column) => {
     const novaOrdenacaoAsc = ordenarPor === column ? !ordenacaoAsc : true;
     setOrdenarPor(column);
     setOrdenacaoAsc(novaOrdenacaoAsc);
-
-    colaboradores.sort((a, b) => {
-      if (a[column] < b[column]) return novaOrdenacaoAsc ? -1 : 1;
-      if (a[column] > b[column]) return novaOrdenacaoAsc ? 1 : -1;
-      return 0;
-    });
   };
 
   return (
@@ -172,14 +63,14 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
           placeholder="Pesquisar..."
           aria-label="Pesquisar"
           value={searchTerm}
-          onChange={(e) => onSearchChange?.(e.target.value)}
+          onChange={(e) => setSearchTerm?.(e.target.value)}
         />
       </div>
       <table className="table">
         <thead>
           <tr>
-            <th onClick={() => ordenaGrid("ID")}>
-              ID {ordenarPor === "ID" && (ordenacaoAsc ? "↑" : "↓")}
+            <th onClick={() => ordenaGrid("id")}>
+              ID {ordenarPor === "id" && (ordenacaoAsc ? "↑" : "↓")}
             </th>
             <th onClick={() => ordenaGrid("nome")}>
               Nome {ordenarPor === "nome" && (ordenacaoAsc ? "↑" : "↓")}

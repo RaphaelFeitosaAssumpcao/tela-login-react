@@ -1,34 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaUsers, FaSearch } from "react-icons/fa";
-import "./sidebar.css";
+import { FaSearch } from "react-icons/fa";
+import "../css/sidebar.css";
+import { sidebarItemsMock } from "../data/sidebarItems";
 
-const ItensSideBar = [
-  {
-    id: 1,
-    tela: "home",
-    path: "/",
-    label: "Home",
-    icon: FaHome,
-    end: true,
-  },
-  {
-    id: 2,
-    tela: "colaborador",
-    path: "/colaboradores",
-    label: "Colaboradores",
-    icon: FaUsers,
-    end: false,
-  },
-];
-
-const SideBar = () => {
-  // CORREÇÃO: importar useState (estava faltando e quebrava a tela)
+/**
+ * SideBar genérico: usa itens mockados por padrão ou recebe itens via props.
+ * Reutilizável em outros layouts passando a prop `items`.
+ * @param {Array} [items] - Lista de { id, tela, path, label, icon, end } (opcional)
+ */
+const SideBar = ({ items = sidebarItemsMock }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filtro local: só exibe itens cujo "tela" contém o texto digitado
-  const filteredItens = ItensSideBar.filter((itens) =>
-    itens.tela.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredItens = items.filter((itens) =>
+    itens.tela.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -36,7 +21,6 @@ const SideBar = () => {
       <h2>Rotas</h2>
       <div className="sideBar-search">
         <FaSearch className="sideBar-search-icon" />
-        {/* CORREÇÃO: onChange usa setSearchTerm (estado local). Antes usava onSearchChange que não existe como prop */}
         <input
           type="text"
           className="sideBar-search-input"
@@ -48,7 +32,6 @@ const SideBar = () => {
       </div>
       <nav>
         <ul>
-          {/* CORREÇÃO: renderizar links a partir de filteredItens em vez de lista fixa */}
           {filteredItens.map((item) => {
             const Icon = item.icon;
             return (

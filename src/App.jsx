@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { FaBell, FaUser } from "react-icons/fa";
-import Login from "./Components/Login/login";
-import ColaboradoresGrid from "./Components/Colaboradores/colaboradores";
-import Home from "./Components/home/home";
-import SideBar from "./Components/SideBar/sidebar";
-import "./App.css";
+import Login from "./pages/Login";
+import ColaboradoresGrid from "./pages/Colaboradores";
+import Home from "./pages/Home";
+import SideBar from "./components/SideBar";
+import { authCredentialsMock } from "./data/authCredentials";
+import "./css/app.css";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleLogin = (user, password) => {
-    if (user === "raphaelf" && password === "Raphael00") {
+    if (
+      user === authCredentialsMock.user &&
+      password === authCredentialsMock.password
+    ) {
       setIsAuthenticated(true);
     } else {
       alert("Credenciais inválidas. Tente novamente.");
