@@ -1,6 +1,6 @@
 import { FaUser, FaLock } from "react-icons/fa";
-import "./login.css";
 import { useState } from "react";
+import "../css/login.css";
 
 const Login = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
@@ -9,7 +9,7 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(userName, password); // Envia as credenciais para a função handleLogin no componente App
+    onLogin(userName, password);
   };
 
   return (
@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
         <div className="input-field">
           <input
             type="text"
-            placeholder="Coloque seu nome de usuário...."
+            placeholder="Coloque seu usuário"
             onChange={(e) => setUserName(e.target.value)}
           />
           <FaUser className="icon" />
@@ -28,7 +28,7 @@ const Login = ({ onLogin }) => {
         <div className="input-field">
           <input
             type="password"
-            placeholder="Coloque sua senha...."
+            placeholder="Coloque sua Senha.."
             onChange={(e) => setPassword(e.target.value)}
           />
           <FaLock className="icon" />
