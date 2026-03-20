@@ -22,7 +22,9 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
   const [ordenacaoAsc, setOrdenacaoAsc] = useState(true);
 
   const handleDelete = (id) => {
-    setColaboradores((prev) => prev.filter((colaborador) => colaborador.id !== id));
+    setColaboradores((prev) =>
+      prev.filter((colaborador) => colaborador.id !== id),
+    );
     alert(`Excluir colaborador com ID: ${id}`);
   };
 
@@ -31,7 +33,12 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
       (colaborador) =>
         colaborador.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
         colaborador.cargo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        colaborador.email.toLowerCase().includes(searchTerm.toLowerCase())
+        colaborador.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.sala.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.gestor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.diretor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        colaborador.entrada.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     const sorted = [...filtered].sort((a, b) => {
       const aVal = a[ordenarPor];
@@ -51,10 +58,6 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
 
   return (
     <div className="grid-container">
-      <div className="title-container">
-        <h1>Lista de Colaboradores</h1>
-      </div>
-
       <div className="search">
         <FaSearch className="search-input-icon" />
         <input
@@ -90,6 +93,10 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
             <th onClick={() => ordenaGrid("diretor")}>
               Diretor {ordenarPor === "diretor" && (ordenacaoAsc ? "↑" : "↓")}
             </th>
+            <th>Status</th>
+            <th onClick={() => ordenaGrid("entrada")}>
+              Entrada {ordenarPor === "entrada" && (ordenacaoAsc ? "↑" : "↓")}
+            </th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -103,6 +110,8 @@ const ColaboradoresGrid = ({ searchTerm: searchTermProp, onSearchChange }) => {
               <td>{colaborador.sala}</td>
               <td>{colaborador.gestor}</td>
               <td>{colaborador.diretor}</td>
+              <td>{colaborador.status}</td>
+              <td>{colaborador.entrada}</td>
               <td>
                 <button
                   className="view-details"

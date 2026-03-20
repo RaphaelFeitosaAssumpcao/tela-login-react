@@ -8,13 +8,6 @@
   box-sizing: border-box;
 }
 
-.title-container {
-  display: flex;
-  gap: 8px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
 .search {
   position: relative;
   display: flex;

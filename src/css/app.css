@@ -46,12 +46,22 @@
 .page-header {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 16px;
   padding: 16px 24px;
   background: #fff;
   border-bottom: 1px solid #e0e0e0;
   flex-shrink: 0;
+}
+
+.page-header-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
 }
 
 .header-icons {

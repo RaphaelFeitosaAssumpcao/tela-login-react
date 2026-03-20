@@ -7,6 +7,8 @@ export const colaboradoresMock = [
     sala: "Desenvolvimento",
     gestor: "Ronaldo",
     diretor: "Josué",
+    status: "Ativo",
+    entrada: "2024-01-15",
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ export const colaboradoresMock = [
     sala: "Design",
     gestor: "Felipe",
     diretor: "Ana",
+    status: "Ativo",
+    entrada: "2024-03-02",
   },
   {
     id: 3,
@@ -25,6 +29,8 @@ export const colaboradoresMock = [
     sala: "TI",
     gestor: "Ronaldo",
     diretor: "Josué",
+    status: "Ativo",
+    entrada: "2023-11-20",
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ export const colaboradoresMock = [
     sala: "Gestão",
     gestor: "Carla",
     diretor: "Pedro",
+    status: "Ativo",
+    entrada: "2023-07-10",
   },
   {
     id: 5,
@@ -43,6 +51,8 @@ export const colaboradoresMock = [
     sala: "Desenvolvimento",
     gestor: "Ronaldo",
     diretor: "Josué",
+    status: "Ativo",
+    entrada: "2024-02-18",
   },
   {
     id: 6,
@@ -52,6 +62,8 @@ export const colaboradoresMock = [
     sala: "Análise",
     gestor: "Ronaldo",
     diretor: "Josué",
+    status: "Ativo",
+    entrada: "2024-04-12",
   },
   {
     id: 7,
@@ -61,6 +73,8 @@ export const colaboradoresMock = [
     sala: "Design",
     gestor: "Felipe",
     diretor: "Ana",
+    status: "Inativo",
+    entrada: "2023-09-05",
   },
   {
     id: 8,
@@ -70,6 +84,8 @@ export const colaboradoresMock = [
     sala: "TI",
     gestor: "Ronaldo",
     diretor: "Josué",
+    status: "Ativo",
+    entrada: "2023-05-30",
   },
   {
     id: 9,
@@ -79,6 +95,8 @@ export const colaboradoresMock = [
     sala: "Suporte",
     gestor: "Carla",
     diretor: "Pedro",
+    status: "Ativo",
+    entrada: "2024-06-01",
   },
   {
     id: 10,
@@ -88,6 +106,8 @@ export const colaboradoresMock = [
     sala: "Marketing",
     gestor: "Felipe",
     diretor: "Ana",
+    status: "Ativo",
+    entrada: "2023-12-11",
   },
   {
     id: 11,
@@ -97,6 +117,8 @@ export const colaboradoresMock = [
     sala: "Operações",
     gestor: "Felipe",
     diretor: "Pedro",
+    status: "Inativo",
+    entrada: "2022-08-14",
   },
   {
     id: 12,
@@ -106,5 +128,7 @@ export const colaboradoresMock = [
     sala: "RH",
     gestor: "Felipe",
     diretor: "Ana",
+    status: "Ativo",
+    entrada: "2023-10-22",
   },
 ];
