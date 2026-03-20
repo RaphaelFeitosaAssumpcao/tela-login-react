@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { FaBell, FaUser } from "react-icons/fa";
 import Login from "./pages/Login";
 import ColaboradoresGrid from "./pages/Colaboradores";
 import Home from "./pages/Home";
-import SideBar from "./components/SideBar";
+import SideBar from "./Components/SideBar";
 import { authCredentialsMock } from "./data/authCredentials";
 import "./css/app.css";
+
+const PAGE_TITLES = {
+  "/": "Home",
+  "/colaboradores": "Lista de colaboradores",
+};
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const { pathname } = useLocation();
+  const pageTitle = PAGE_TITLES[pathname] ?? "Rotas";
 
   const handleLogin = (user, password) => {
     if (
@@ -32,6 +39,7 @@ const App = () => {
           <SideBar />
           <div className="page-content">
             <header className="page-header">
+              <h1 className="page-header-title">{pageTitle}</h1>
               <div className="header-icons">
                 <button
                   type="button"
