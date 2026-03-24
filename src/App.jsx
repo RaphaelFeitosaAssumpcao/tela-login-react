@@ -4,12 +4,14 @@ import { FaBell, FaUser } from "react-icons/fa";
 import Login from "./pages/Login";
 import ColaboradoresGrid from "./pages/Colaboradores";
 import Home from "./pages/Home";
+import Acessos from "./pages/Acessos";
 import SideBar from "./Components/SideBar";
 import { authCredentialsMock } from "./data/authCredentials";
 import "./css/app.css";
 
 const PAGE_TITLES = {
   "/": "Home",
+  "/acessos": "Lista de Acessos",
   "/colaboradores": "Lista de colaboradores",
 };
 
@@ -70,6 +72,7 @@ const App = () => {
                   }
                 />
                 <Route path="/home" element={<Navigate to="/" replace />} />
+                <Route path="/acessos" element={<Acessos />} />
               </Routes>
             </main>
           </div>
