@@ -1,4 +1,4 @@
-import { FaHome, FaUsers, FaSearch } from "react-icons/fa";
+import { FaHome, FaUsers, FaKey } from "react-icons/fa";
 
 export const sidebarItemsMock = [
   {
@@ -11,6 +11,14 @@ export const sidebarItemsMock = [
   },
   {
     id: 2,
+    tela: "acessos",
+    path: "/acessos",
+    label: "Acessos",
+    icon: FaKey,
+    end: true,
+  },
+  {
+    id: 3,
     tela: "colaborador",
     path: "/colaboradores",
     label: "Colaboradores",
